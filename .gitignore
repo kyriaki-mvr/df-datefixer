@@ -1,0 +1,21 @@
+# Python caches and compiled files
+__pycache__/
+*.py[cod]
+
+# Packaging & distribution files
+*.egg-info/
+dist/
+build/
+
+# Virtual environment
+venv/
+
+# MacOS files
+.DS_Store
+
+# PyCharm
+.idea/
+*.iml
+
+# VS Code
+.vscode/
