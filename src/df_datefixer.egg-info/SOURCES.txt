@@ -1,0 +1,9 @@
+setup.py
+src/df_datefixer/__init__.py
+src/df_datefixer/fixer.py
+src/df_datefixer.egg-info/PKG-INFO
+src/df_datefixer.egg-info/SOURCES.txt
+src/df_datefixer.egg-info/dependency_links.txt
+src/df_datefixer.egg-info/requires.txt
+src/df_datefixer.egg-info/top_level.txt
+tests/test_fixer.py
