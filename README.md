@@ -5,6 +5,9 @@
 
 A lightweight Python library to standardize date columns in Pandas DataFrames. It automatically handles multiple date formats, missing values, problematic entries, multi-column fixing, optional datetime conversion, and more.
 
+See the package on [PyPI](https://pypi.org/project/df-datefixer/).\
+See the package on [GitHub](https://github.com/kyriaki-mvr/df-datefixer)
+
 ## Installation
 
 Install via pip:
@@ -83,15 +86,18 @@ pip install pytest
 pytest tests
 ```
 
-## PyPI
+## Contributing
 
-See the package on [PyPI - df-datefixer](https://pypi.org/project/df-datefixer/).
+Contributions are welcome! If you'd like to contribute, please fork the repository and use a feature branch. Pull requests are warmly welcomed.
+
+## Feedback
+
+If you have any feedback, please file an issue on the GitHub repository page. I am always looking to improve and appreciate all feedback, bug reports, and suggestions.
+
+## Authors
+
+Kyriaki Mavropoulou (kyriaki@quanterra.gr) - Initial work
 
 ## License
 
-`df-datefixer` is licensed under the MIT License. See [LICENSE](LICENSE) for details.
-
-## Contributing
-
-Contributions and issues are welcome! Please open an issue or submit a pull request on GitHub.
-
+`df-datefixer` is licensed under the MIT License - see the LICENSE file for details.
