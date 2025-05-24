@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="df-datefixer",
-    version="0.1.0",
+    version="1.0.0",
     description="Simple package to automatically standardize dates in Pandas DataFrames.",
     author="Kyriaki Mavrooulou",
     author_email="kyriaki@quanterra.gr",
@@ -13,4 +13,5 @@ setup(
         'python-dateutil',
     ],
     python_requires=">=3.7",
+    license="MIT"
 )

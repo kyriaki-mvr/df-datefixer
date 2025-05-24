@@ -39,7 +39,7 @@ def fix_dates(df, column=None, columns=None, target_format="%Y-%m-%d", missing_v
                 fixed_dates.append(None)
 
         if verbose and problems:
-            print(f"⚠️ {len(problems)} problematic date values found in column \"{col}\":")
+            print(f"! {len(problems)} problematic date values found in column \"{col}\":")
             for idx, issue in problems:
                 print(f"- Row {idx}: {issue}")
 
