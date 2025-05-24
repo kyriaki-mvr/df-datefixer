@@ -43,7 +43,7 @@ fixed_df = fix_dates(df, columns=['start_date', 'end_date'], convert_to_datetime
 print(fixed_df)
 ```
 
-### Important Note about Datetime Conversion:
+### Important note about datetime conversion:
 
 If you set `convert_to_datetime=True` with a custom `missing_value`, your column might be converted to object type instead of datetime, because custom placeholders might not be datetime-compatible. For pure datetime operations, leaving `missing_value` as `"NaT"` (default datetime placeholder) is recommended.
 
@@ -60,7 +60,7 @@ If you set `convert_to_datetime=True` with a custom `missing_value`, your column
 
 ## Development
 
-### Set up Virtual Environment
+### Set up virtual environment
 
 ```shell
 python -m venv venv
