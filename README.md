@@ -6,7 +6,7 @@
 A lightweight Python library to standardize date columns in Pandas DataFrames. It automatically handles multiple date formats, missing values, problematic entries, multi-column fixing, optional datetime conversion, and more.
 
 See the package on [PyPI](https://pypi.org/project/df-datefixer/).\
-See the package on [GitHub](https://github.com/kyriaki-mvr/df-datefixer)
+See the package on [GitHub](https://github.com/kyriaki-mvr/df-datefixer).
 
 ## Installation
 
