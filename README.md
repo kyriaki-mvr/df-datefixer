@@ -3,7 +3,7 @@
 [![PyPI](https://img.shields.io/pypi/v/df-datefixer.svg)](https://pypi.org/project/df-datefixer/)
 [![License](https://img.shields.io/github/license/kyriaki-mvr/df-datefixer)](LICENSE)
 
-A lightweight Python library to standardize date columns in Pandas DataFrames. It automatically handles multiple date formats, missing values, and problematic entries.
+A lightweight Python library to standardize date columns in Pandas DataFrames. It automatically handles multiple date formats, missing values, problematic entries, multi-column fixing, optional datetime conversion, and more.
 
 ## Installation
 
@@ -14,6 +14,8 @@ pip install df-datefixer
 ```
 
 ## Usage
+
+Basic usage:
 
 ```python
 import pandas as pd
@@ -28,37 +30,56 @@ fixed_df = fix_dates(df, column="event_date", target_format="%Y-%m-%d", missing_
 print(fixed_df)
 ```
 
-The above will print:
+### Multiple columns, datetime conversion, and custom placeholders:
 
-```
-⚠️ 2 problematic date values found in column "event_date":
-- Row 2: bad-date
-- Row 3: None (missing)
+```python
+df = pd.DataFrame({
+    'start_date': ['2022-01-01', '1/2/2022', 'bad-date', None],
+    'end_date': ['2022-02-01', 'invalid', '03-03-2022', None]
+})
 
-  event_date
-0  2022-01-01
-1  2022-01-02
-2           0
-3           0
+fixed_df = fix_dates(df, columns=['start_date', 'end_date'], convert_to_datetime=True, missing_value="NaT")
+
+print(fixed_df)
 ```
+
+### Important Note about Datetime Conversion:
+
+If you set `convert_to_datetime=True` with a custom `missing_value`, your column might be converted to object type instead of datetime, because custom placeholders might not be datetime-compatible. For pure datetime operations, leaving `missing_value` as `"NaT"` (default datetime placeholder) is recommended.
 
 ## Parameters
 
-- `df`: A pandas DataFrame.
-- `column`: Column name containing dates.
-- `target_format`: Desired standardized date format (default is "%Y-%m-%d").
-- `missing_value`: Replacement for missing/unparsable dates (default is "0").
-- `verbose`: Print details about problematic dates (default is `True`).
+- `df`: A pandas DataFrame
+- `column`: Column name containing dates (single column)
+- `columns`: List of column names to fix simultaneously
+- `target_format`: Desired standardized date format (default is "%Y-%m-%d")
+- `missing_value`: Replacement for missing/unparsable dates (default is "0")
+- `verbose`: Print details about problematic dates (default is `True`)
+- `convert_to_datetime`: Converts fixed dates to pandas datetime type if `True` (default is `False`)
+- `inplace`: Modifies DataFrame in place if `True`, else returns a new DataFrame (default is `False`)
 
 ## Development
 
-Clone and install in editable mode for local development:
+### Set up Virtual Environment
+
+```shell
+python -m venv venv
+source venv/bin/activate  # on macOS/Linux
+.\venv\Scripts\activate  # on Windows
+```
+
+### Clone repository and install dependencies
 
 ```shell
 git clone https://github.com/kyriaki-mvr/df-datefixer.git
 cd df-datefixer
 pip install -e .
 pip install pytest
+```
+
+### Run tests
+
+```shell
 pytest tests
 ```
 
@@ -73,3 +94,4 @@ See the package on [PyPI - df-datefixer](https://pypi.org/project/df-datefixer/)
 ## Contributing
 
 Contributions and issues are welcome! Please open an issue or submit a pull request on GitHub.
+

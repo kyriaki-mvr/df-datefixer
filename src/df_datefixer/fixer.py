@@ -1,38 +1,52 @@
 import pandas as pd
 from dateutil import parser
 
-def fix_dates(df, column, target_format="%Y-%m-%d", missing_value="0", verbose=True):
+def fix_dates(df, column=None, columns=None, target_format="%Y-%m-%d", missing_value="0",
+              verbose=True, convert_to_datetime=False, inplace=False):
     """
-    Fixes dates in a DataFrame column to a specified format.
+    Fixes dates in DataFrame column(s) to a specified format.
 
     Keyword arguments:
-    df -- input pandas DataFrame
-    column -- name of the column with dates to fix
+    df -- pandas DataFrame
+    column -- column name containing dates (single column)
+    columns -- list of column names (multiple columns)
     target_format -- desired date format (default "%Y-%m-%d")
-    missing_value -- value to use for invalid or missing dates (default "0")
+    missing_value -- replacement for missing/unparsable dates (default "0")
     verbose -- print problematic values (default True)
-
-    :return: DataFrame with fixed date column
+    convert_to_datetime -- converts fixed dates to datetime type if True (default False)
+    inplace -- modify DataFrame inplace if True, else returns new DataFrame (default False)
+    :return: DataFrame with fixed date column(s)
     """
-    fixed_dates = []
-    problems = []
+    if not inplace:
+        df = df.copy()
 
-    for idx, val in df[column].items():
-        if pd.isnull(val):
-            problems.append((idx, "None (missing)"))
-            fixed_dates.append(missing_value)
-            continue
-        try:
-            parsed_date = parser.parse(str(val))
-            fixed_dates.append(parsed_date.strftime(target_format))
-        except Exception:
-            problems.append((idx, val))
-            fixed_dates.append(missing_value)
+    cols = columns if columns else [column]
 
-    if verbose and problems:
-        print(f"⚠️ {len(problems)} problematic date values found in column '{column}':")
-        for idx, issue in problems:
-            print(f"- Row {idx}: {issue}")
+    missing_value_str = str(missing_value)
 
-    df[column] = fixed_dates
+    for col in cols:
+        fixed_dates, problems = [], []
+        for idx, val in df[col].items():
+            if pd.isnull(val):
+                problems.append((idx, "None (missing)"))
+                fixed_dates.append(None)  # temporarily None for accurate datetime handling
+                continue
+            try:
+                parsed_date = parser.parse(str(val))
+                fixed_dates.append(parsed_date.strftime(target_format))
+            except Exception:
+                problems.append((idx, val))
+                fixed_dates.append(None)
+
+        if verbose and problems:
+            print(f"! {len(problems)} problematic date values found in column \"{col}\":")
+            for idx, issue in problems:
+                print(f"- Row {idx}: {issue}")
+
+        if convert_to_datetime:
+            df[col] = pd.to_datetime(fixed_dates, errors="coerce")
+            df[col] = df[col].fillna(missing_value_str)
+        else:
+            df[col] = [val if val is not None else missing_value_str for val in fixed_dates]
+
     return df
