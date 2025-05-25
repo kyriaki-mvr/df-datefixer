@@ -1,6 +1,7 @@
 # df-datefixer
 [![PyPI](https://img.shields.io/pypi/v/df-datefixer.svg)](https://pypi.org/project/df-datefixer/)
-[![PyPI Downloads](https://static.pepy.tech/badge/df-datefixer)](https://pepy.tech/projects/df-datefixer)
+[![PyPI Downloads](https://img.shields.io/pepy/dt/df-datefixer)](https://pepy.tech/projects/df-datefixer)
+
 
 A lightweight Python library to standardize date columns in Pandas DataFrames. It automatically handles multiple date formats, missing values, problematic entries, multi-column fixing, optional datetime conversion, and more.
 
