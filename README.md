@@ -85,7 +85,7 @@ Contributions are welcome! If you'd like to contribute, please fork the reposito
 If you have any feedback, please file an issue on the GitHub repository page. I am always looking to improve and appreciate all feedback, bug reports, and suggestions.
 
 ## Authors
-Kyriaki Mavropoulou (kyriaki@quanterra.gr) - Initial work
+Kyriaki Mavropoulou (kyriaki@mavropoulou.info) - Initial work
 
 ## License
 `df-datefixer` is licensed under the MIT License - see the LICENSE file for details.
